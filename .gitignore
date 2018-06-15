@@ -1,0 +1,35 @@
+# Projects
+.idea
+.idea_modules/
+*.sublime-workspace
+*.vscode
+
+# OSX template
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Scons
+.sconsign.dblite
+*.o
+*.obj
+*.lib
+*.dll
+
+# Output
+bin
+bin/*
+!bin/.keep
+!bin/*.gdnlib
+!bin/*.gdns
+
+builds
+builds/*
+!builds/.keep
+
+/cmake-build-debug
+cmake-build-debug/*
+/cmake-build-release
+cmake-build-release/*
+/cmake-build-relwithdebinfo
+cmake-build-relwithdebinfo/*
