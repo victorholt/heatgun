@@ -41,4 +41,5 @@ func _check_hit():
 				# Hide the projectile so we can display the death particle.
 				$CollisionShape/MeshInstance.hide()
 				exp_state.show()
+				c.emit_signal("on_hit")
 				return

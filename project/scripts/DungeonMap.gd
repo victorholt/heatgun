@@ -19,3 +19,4 @@ func _add_random_objects(resPath, amount):
 		.add_child(obj)
 		obj.set_owner(self)
 		obj.show()
+		obj.get_node("MeshInstance").energy_level = rand_range(-1.0, 1.0)

@@ -10,7 +10,7 @@ onready var projectile = preload("res://scenes/Projectile.tscn")
 var velocity = Vector3()
 var dir = Vector3()
 
-const speed = 20.0
+const speed = 15.0
 const accel = 2.0
 const deaccel = 20.0
 const gravity = -10.0

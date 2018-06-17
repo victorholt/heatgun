@@ -39,15 +39,18 @@ params_line_width = 1.0
 params_point_size = 1.0
 params_billboard_mode = 0
 params_grow = false
-params_use_alpha_scissor = true
-params_alpha_scissor_threshold = 0.7
+params_use_alpha_scissor = false
 albedo_color = Color( 1, 1, 1, 1 )
 metallic = 0.0
 metallic_specular = 0.5
 metallic_texture_channel = 0
 roughness = 0.0
 roughness_texture_channel = 0
-emission_enabled = false
+emission_enabled = true
+emission = Color( 0.282353, 0.705882, 0.705882, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
 normal_enabled = false
 rim_enabled = false
 clearcoat_enabled = false
@@ -68,7 +71,7 @@ uv2_triplanar = false
 uv2_triplanar_sharpness = 1.0
 proximity_fade_enable = false
 distance_fade_enable = false
-_sections_unfolded = [ "Parameters", "emission_texture" ]
+_sections_unfolded = [ "Albedo", "Emission", "Parameters", "emission_texture" ]
 
 [sub_resource type="CubeMesh" id=4]
 
