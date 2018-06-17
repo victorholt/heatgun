@@ -1,6 +1,6 @@
 extends MeshInstance
 
-onready var mat = get_parent().get_node("MeshInstance").get_surface_material(0)
+onready var mat = get_parent().get_node('MeshInstance').get_surface_material(0)
 var energy_level = 0.0
 var energy_level_dir = 1.0
 

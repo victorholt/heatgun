@@ -2,7 +2,7 @@ extends DungeonMap
 
 func _ready():
 	# adding candy
-	_add_random_objects("res://scenes/Crystal.tscn", 15)
+	_add_random_objects('res://scenes/Crystal.tscn', 15)
 	
 	# re-bake the beans because we added so mo stuff!
 	get_parent().get_node('GIProbe').bake()
@@ -19,4 +19,4 @@ func _add_random_objects(resPath, amount):
 		.add_child(obj)
 		obj.set_owner(self)
 		obj.show()
-		obj.get_node("MeshInstance").energy_level = rand_range(-1.0, 1.0)
+		obj.get_node('MeshInstance').energy_level = rand_range(-1.0, 1.0)

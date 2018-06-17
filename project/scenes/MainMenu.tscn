@@ -5,8 +5,9 @@
 [ext_resource path="res://materials/menu_btn_style.tres" type="StyleBox" id=3]
 [ext_resource path="res://fonts/8-BIT WONDER.TTF" type="DynamicFontData" id=4]
 [ext_resource path="res://scripts/StartGameBtn.gd" type="Script" id=5]
-[ext_resource path="res://scripts/ExitBtn.gd" type="Script" id=6]
+[ext_resource path="res://scripts/ui/ExitBtn.gd" type="Script" id=6]
 [ext_resource path="res://scenes/MainMenuFade.tres" type="Animation" id=7]
+
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -28,7 +29,7 @@ use_filter = false
 font_data = ExtResource( 4 )
 _sections_unfolded = [ "Font", "Settings", "font_data" ]
 
-[node name="Menu" type="Control" index="0"]
+[node name="Menu" type="Control"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -91,7 +92,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 1042.0
+margin_right = 1040.0
 margin_bottom = 46.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -112,7 +113,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 50.0
-margin_right = 1042.0
+margin_right = 1040.0
 margin_bottom = 560.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -128,7 +129,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 1042.0
+margin_right = 1040.0
 margin_bottom = 510.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -143,7 +144,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 1042.0
+margin_right = 1040.0
 margin_bottom = 184.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -171,9 +172,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 184.827
-margin_right = 1042.0
-margin_bottom = 226.827
+margin_top = 188.0
+margin_right = 1040.0
+margin_bottom = 230.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -202,7 +203,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 234.0
-margin_right = 1042.0
+margin_right = 1040.0
 margin_bottom = 299.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -224,7 +225,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 303.0
-margin_right = 1042.0
+margin_right = 1040.0
 margin_bottom = 345.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false

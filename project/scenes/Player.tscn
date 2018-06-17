@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://materials/hot_projectile_mat.tres" type="Material" id=2]
+[ext_resource path="res://scripts/Weapon.gd" type="Script" id=3]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -47,8 +48,8 @@ metallic_texture_channel = 0
 roughness = 0.0
 roughness_texture_channel = 0
 emission_enabled = true
-emission = Color( 0.282353, 0.705882, 0.705882, 1 )
-emission_energy = 1.0
+emission = Color( 0.0588235, 0.333333, 0.407843, 1 )
+emission_energy = 1.83
 emission_operator = 0
 emission_on_uv2 = false
 normal_enabled = false
@@ -82,7 +83,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[node name="Player" type="KinematicBody" index="0"]
+[node name="Player" type="KinematicBody"]
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 1
@@ -130,7 +131,20 @@ lod_max_hysteresis = 0.0
 mesh = SubResource( 4 )
 skeleton = NodePath("..")
 material/0 = ExtResource( 2 )
+script = ExtResource( 3 )
 _sections_unfolded = [ "Material", "mesh" ]
+
+[node name="FireCooldown" type="Timer" parent="Weapon" index="0"]
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="TempCooldown" type="Timer" parent="Weapon" index="1"]
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
 
 [node name="WeaponFireExit" type="Spatial" parent="." index="3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.22997, 0.230216, -2.74225 )

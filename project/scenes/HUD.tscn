@@ -5,7 +5,7 @@
 [ext_resource path="res://scripts/ui/ScoreValueContainerUI.gd" type="Script" id=3]
 [ext_resource path="res://scripts/ui/MiniMap.gd" type="Script" id=4]
 
-[node name="HUDItems" type="VBoxContainer"]
+[node name="HUDItems" type="VBoxContainer" index="0"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0

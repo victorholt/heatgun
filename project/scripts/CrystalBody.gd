@@ -3,8 +3,8 @@ extends StaticBody
 signal on_hit
 
 func _ready():
-	set_meta("valid_hit_target", true)
-	connect("on_hit", self, "_on_hit")
+	set_meta('valid_hit_target', true)
+	connect('on_hit', self, '_on_hit')
 	
 func _on_hit():
 	pass

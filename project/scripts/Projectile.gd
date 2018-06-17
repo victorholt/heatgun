@@ -1,6 +1,6 @@
 extends RigidBody
 
-onready var projectile_exp = preload("res://scenes/ProjectileEnd.tscn")
+onready var projectile_exp = preload('res://scenes/ProjectileEnd.tscn')
 
 var timer = 0
 var damage = 10
@@ -12,7 +12,7 @@ var projectile_expire_time = 50
 func _ready():
 	exp_state = projectile_exp.instance()
 	exp_state.hide()
-	set_meta("projectile", true)
+	set_meta('projectile', true)
 
 func _physics_process(delta):
 	_check_hit()
@@ -34,12 +34,12 @@ func _check_hit():
 			# valid_hit_target IS a meta value set by the custom
 			# dungeon_map module compiled with the engine. NOT
 			# STANDARD!
-			if c.has_meta("valid_hit_target"):
+			if c.has_meta('valid_hit_target'):
 				linear_velocity = Vector3()
 				gravity_scale = 0.0
 				
 				# Hide the projectile so we can display the death particle.
 				$CollisionShape/MeshInstance.hide()
 				exp_state.show()
-				c.emit_signal("on_hit")
+				c.emit_signal('on_hit')
 				return

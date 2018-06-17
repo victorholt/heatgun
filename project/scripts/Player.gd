@@ -6,6 +6,9 @@ onready var weapon = get_node("Weapon")
 onready var weaponMuzzle = get_node("WeaponFireExit")
 onready var projectile = preload("res://scenes/Projectile.tscn")
 
+# Best to have some sort of state machine for the entire game...
+var pauseMenu = null
+
 # Movement variables
 var velocity = Vector3()
 var dir = Vector3()
@@ -16,16 +19,18 @@ const deaccel = 20.0
 const gravity = -10.0
 
 func _ready():	
-	var dungeon_map = get_parent().get_node("DungeonMap")	
-	var map_loc = dungeon_map.get_random_map_location()
-	translation = Vector3(map_loc.x, 1.2, map_loc.y)
+	pauseMenu = get_parent().get_node("Pause")
+
+	var dungeon_map = get_parent().get_node('DungeonMap')	
+	var map_loc = dungeon_map.get_random_map_location()	
+	translation = Vector3(map_loc.x, 1.2, map_loc.y)	
 	
 func _physics_process(delta):
+	if pauseMenu && pauseMenu.is_paused:
+		return
+	
 	walk(delta)
 	fire_weapon(delta)
-
-func _input(event):
-	pass
 	
 func walk(delta):
 	var dir = Vector3()
@@ -33,13 +38,13 @@ func walk(delta):
 	var aim = camera.get_global_transform().basis
 	
 	# Handle player movement.
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed('ui_up'):
 		inputDir.z -= 1.0
-	if Input.is_action_pressed("ui_down"):
+	if Input.is_action_pressed('ui_down'):
 		inputDir.z += 1.0
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed('ui_left'):
 		inputDir.x += 1.0
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed('ui_right'):
 		inputDir.x -= 1.0
 		
 	inputDir = inputDir.normalized()
@@ -70,7 +75,9 @@ func walk(delta):
 	velocity = move_and_slide(velocity, Vector3(0,1,0))
 
 func fire_weapon(delta):
-	if !Input.is_action_just_pressed("fire_weapon"):
+	if !Input.is_action_pressed('fire_weapon'):
+		return	
+	if !weapon.can_fire():
 		return
 		
 	var proj = projectile.instance()
@@ -81,6 +88,10 @@ func fire_weapon(delta):
 	proj.set_linear_velocity(proj_vel * 50)
 	proj.add_collision_exception_with(self)
 	proj.add_collision_exception_with(weapon)
+	
+	weapon.emit_signal('fire_weapon')
+	
+
 	
 	
 	
