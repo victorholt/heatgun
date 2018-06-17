@@ -4,6 +4,10 @@
 *.sublime-workspace
 *.vscode
 
+# Godot
+.import
+*.import
+
 # OSX template
 .DS_Store
 .AppleDouble

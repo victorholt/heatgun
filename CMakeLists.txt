@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 # Setup the build locations.
 if (CMAKE_BUILD_TYPE MATCHES Debug)
-    add_definitions(-DSYMPL_DEBUG)
+    add_definitions(-DHEATGUN_DEBUG)
     set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/builds/debug)
     set (CMAKE_LIBRARY_OUTPUT_DIRECTORY  ${PROJECT_SOURCE_DIR}/builds/debug)
     set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/builds/debug)
@@ -50,7 +50,9 @@ set (HEATGUN_SOURCES)
 include_directories(${GODOT_INCLUDES})
 
 include(${GODOT_SOURCE_DIR}/CMakeLists.txt)
-include(${HEATGUN_SRC_DIR}/map_generator/CMakeLists.txt)
 include(${HEATGUN_SRC_DIR}/opensimplex/CMakeLists.txt)
+include(${HEATGUN_SRC_DIR}/common/heatgun/CMakeLists.txt)
+include(${HEATGUN_SRC_DIR}/map_generator/CMakeLists.txt)
+include(${HEATGUN_SRC_DIR}/dungeon_map/CMakeLists.txt)
 
 #add_executable(GodotModules ${GODOT_CPP_SOURCES} main.cpp)

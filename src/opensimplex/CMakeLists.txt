@@ -1,12 +1,12 @@
 # Header and src files.
 file (GLOB OPENSIMPLEX_HEADERS
-    "${GODOT_MODULES_DIR}/opensimplex/*.h"
-    "${GODOT_MODULES_DIR}/opensimplex/lib/*.h"
+    "${HEATGUN_SRC_DIR}/opensimplex/*.h"
+    "${HEATGUN_SRC_DIR}/opensimplex/lib/*.h"
 )
 
 file (GLOB OPENSIMPLEX_SRC
-    "${GODOT_MODULES_DIR}/opensimplex/*.cpp"
-    "${GODOT_MODULES_DIR}/opensimplex/lib/*.c"
+    "${HEATGUN_SRC_DIR}/opensimplex/*.cpp"
+    "${HEATGUN_SRC_DIR}/opensimplex/lib/*.c"
 )
 
 add_library(OpenSimplex SHARED
