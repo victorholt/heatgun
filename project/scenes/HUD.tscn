@@ -7,7 +7,7 @@
 [ext_resource path="res://scripts/ui/EnemyHealthValueUI.gd" type="Script" id=5]
 [ext_resource path="res://scripts/ui/MiniMap.gd" type="Script" id=6]
 
-[node name="HUDItems" type="VBoxContainer"]
+[node name="HUDItems" type="VBoxContainer" index="0"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -24,7 +24,7 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." index="0"]
+[node name="PlayerContainer" type="HBoxContainer" parent="." index="0"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -40,7 +40,8 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Margin" ]
 
-[node name="PlayerInfo" type="VBoxContainer" parent="HBoxContainer" index="0"]
+[node name="PlayerInfo" type="VBoxContainer" parent="PlayerContainer" index="0"]
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -56,33 +57,33 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="HealthValue" parent="HBoxContainer/PlayerInfo" index="0" instance=ExtResource( 1 )]
+[node name="HealthValue" parent="PlayerContainer/PlayerInfo" index="0" instance=ExtResource( 1 )]
 margin_right = 1028.0
 custom_constants/separation = 20
 script = ExtResource( 2 )
 
-[node name="TempValueContainer" parent="HBoxContainer/PlayerInfo" index="1" instance=ExtResource( 1 )]
+[node name="TempValueContainer" parent="PlayerContainer/PlayerInfo" index="1" instance=ExtResource( 1 )]
 margin_top = 22.0
 margin_right = 1028.0
 margin_bottom = 40.0
 custom_constants/separation = 20
 script = ExtResource( 3 )
 
-[node name="ScoreValueContainer2" parent="HBoxContainer/PlayerInfo" index="2" instance=ExtResource( 1 )]
+[node name="ScoreValueContainer2" parent="PlayerContainer/PlayerInfo" index="2" instance=ExtResource( 1 )]
 margin_top = 44.0
 margin_right = 1028.0
 margin_bottom = 62.0
 custom_constants/separation = 20
 script = ExtResource( 4 )
 
-[node name="EnemyHealthValue" parent="HBoxContainer/PlayerInfo" index="3" instance=ExtResource( 1 )]
+[node name="EnemyHealthValue" parent="PlayerContainer/PlayerInfo" index="3" instance=ExtResource( 1 )]
 margin_top = 66.0
 margin_right = 1028.0
 margin_bottom = 84.0
 custom_constants/separation = 20
 script = ExtResource( 5 )
 
-[node name="MiniMap" type="TextureRect" parent="HBoxContainer" index="1"]
+[node name="MiniMap" type="TextureRect" parent="PlayerContainer" index="1"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0

@@ -31,8 +31,10 @@ func pause(pause_game, show_pause_menu):
 		if camera:
 			camera.set_enabled(false)
 			Input.set_mouse_mode(3)
-		if show_pause_menu:
+		if show_pause_menu && !disable_input:
 			show()
+		else:
+			hide()
 	else:
 		if camera:
 			camera.set_enabled(true)

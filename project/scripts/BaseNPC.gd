@@ -108,7 +108,13 @@ func die():
 		player.update_current_attack_target(null)
 		
 	_on_death()
-	queue_free()
+	
+	# Don't delete because we'll run into a Null Exception
+	# bug... which should be fixed! For now just hide the enemy
+	# queue_free()	
+	set_process(false)
+	set_physics_process(false)
+	body.translation = Vector3(-9999,-9999,-9999)
 	
 # Reset the player cooldowns
 func reset_cooldowns():
@@ -122,7 +128,7 @@ func reset_movement():
 	
 # Returns if the player is in view.
 func player_in_view():
-	if player && !player.is_dead && body.translation.distance_to(player.translation) > 15:
+	if player && !player.is_dead && body.translation.distance_to(player.translation) > 25:
 		path_to_player = PoolVector3Array()
 		return false	
 	
@@ -133,7 +139,7 @@ func player_in_view():
 	
 # Returns if the player is in view.
 func player_in_long_view():
-	if player && !player.is_dead && body.translation.distance_to(player.translation) > 30:
+	if player && !player.is_dead && body.translation.distance_to(player.translation) > 40:
 		return false	
 	
 	# Rotate in the direction of the player.

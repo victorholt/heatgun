@@ -9,4 +9,10 @@ func _ready():
 	
 func _physics_process(delta):	
 	if player:
-		$Value.text = String(player.health)
+		$Value.text = String(player.health)			
+		if (player.health < 10):
+			$Value.set('custom_colors/font_color', Color(1.0, 1.0, 0.0))
+		if (player.health < 7):
+			$Value.set('custom_colors/font_color', Color(1.0, 0.0, 0.0))
+		if (player.health > 10):
+			$Value.set('custom_colors/font_color', Color(1.0, 1.0, 1.0))

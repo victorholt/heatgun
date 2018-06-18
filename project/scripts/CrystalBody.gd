@@ -16,6 +16,11 @@ func _physics_process(delta):
 	if is_changed:
 		var pos = get_parent().get_translation()
 		dungeon_map.set_map_tile_color(pos, Color(0.04, 0.9, 1.0))
+		
+func reset_map_color():
+	is_changed = false
+	var pos = get_parent().get_translation()
+	dungeon_map.set_map_tile_color(pos, Color(1.0, 1.0, 1.0))
 	
 func _on_hit():
 	if is_changed:

@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/ui/DeathWnd.gd" type="Script" id=1]
 [ext_resource path="res://fonts/8-BIT WONDER.TTF" type="DynamicFontData" id=2]
 [ext_resource path="res://materials/menu_btn_style.tres" type="StyleBox" id=3]
+[ext_resource path="res://scripts/ui/DeathRestartBtn.gd" type="Script" id=4]
+[ext_resource path="res://scripts/ui/DeathExitBtn.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -24,7 +26,7 @@ use_filter = false
 font_data = ExtResource( 2 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Death" type="Control" index="0"]
+[node name="Death" type="Control"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -139,39 +141,10 @@ group = null
 text = "Restart"
 flat = true
 align = 1
+script = ExtResource( 4 )
 _sections_unfolded = [ "Custom Colors", "Custom Constants", "Custom Fonts", "Size Flags", "custom_fonts/font" ]
 
-[node name="SettingsBtn" type="Button" parent="DeathWnd/WndContainer/MenuOptions" index="1"]
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 82.0
-margin_right = 1160.0
-margin_bottom = 114.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 0
-custom_styles/pressed = ExtResource( 3 )
-custom_styles/focus = ExtResource( 3 )
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color_hover = Color( 0.972549, 0.831373, 0.0862745, 1 )
-custom_colors/font_color_pressed = Color( 0.972549, 0.831373, 0.0862745, 1 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Settings"
-flat = true
-align = 1
-_sections_unfolded = [ "Custom Colors", "Custom Fonts", "Size Flags", "custom_fonts/font" ]
-
-[node name="ExitBtn" type="Button" parent="DeathWnd/WndContainer/MenuOptions" index="2"]
+[node name="ExitBtn" type="Button" parent="DeathWnd/WndContainer/MenuOptions" index="1"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -198,6 +171,8 @@ group = null
 text = "Exit"
 flat = true
 align = 1
+script = ExtResource( 5 )
 _sections_unfolded = [ "Custom Colors", "Custom Fonts", "Size Flags", "custom_fonts/font" ]
 
+[connection signal="pressed" from="DeathWnd/WndContainer/MenuOptions/RestartBtn" to="DeathWnd/WndContainer/MenuOptions/RestartBtn" method="_on_RestartBtn_pressed"]
 [connection signal="pressed" from="DeathWnd/WndContainer/MenuOptions/ExitBtn" to="DeathWnd/WndContainer/MenuOptions/ExitBtn" method="_on_ExitBtn_pressed"]

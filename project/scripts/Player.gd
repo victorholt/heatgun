@@ -1,14 +1,13 @@
 extends KinematicBody
 
 # Our global camera.
+var dungeon_map = null
 onready var camera = get_parent().get_node("Camera")
 onready var weapon = get_node("Weapon")
 onready var weaponMuzzle = get_node("WeaponFireExit")
 onready var projectile = preload("res://scenes/Projectile.tscn")
 onready var body = get_node('Character')
-onready var dungeon_map = get_parent().get_node('DungeonMap')
 onready var death_wnd = get_tree().get_root().get_node('Node/Death')
-# onready var next_lvl_wnd = get_tree().get_root().get_node('Node/NextLevel')
 
 # Best to have some sort of state machine for the entire game...
 var pauseMenu = null
@@ -21,7 +20,7 @@ var last_map_position = Vector3()
 var velocity = Vector3()
 var dir = Vector3()
 
-var health = 10
+var health = 15
 var is_dead = false
 var crystals = 0
 
@@ -31,12 +30,9 @@ const deaccel = 20.0
 const gravity = -10.0
 
 func _ready():	
-	set_meta("is_player", true)
-	pauseMenu = get_tree().get_root().get_node("Node/Pause")
-
-	var dungeon_map = get_parent().get_node('DungeonMap')	
-	var map_loc = dungeon_map.get_random_map_location()	
-	translation = Vector3(map_loc.x, 1.2, map_loc.y)	
+	set_meta("is_player", true)	
+	dungeon_map = get_tree().get_root().get_node('Node/DungeonMap')
+	pauseMenu = get_tree().get_root().get_node("Node/Pause")	
 	
 func _physics_process(delta):
 	if pauseMenu && pauseMenu.is_paused:
@@ -44,6 +40,15 @@ func _physics_process(delta):
 	
 	walk(delta)
 	fire_weapon(delta)
+	
+func reset_player(dm):
+	dungeon_map = dm
+	current_attack_target = null
+	health = 15
+	crystals = 0
+	is_dead = false
+	var map_loc = dungeon_map.get_random_map_location()	
+	translation = Vector3(map_loc.x, 1.2, map_loc.y)
 	
 func walk(delta):
 	var dir = Vector3()
@@ -106,7 +111,7 @@ func hit(obj, damage):
 func add_health(amount):
 	health += amount
 	if health > 20:
-		health = 15
+		health = 20
 
 func fire_weapon(delta):
 	if !Input.is_action_pressed('fire_weapon'):

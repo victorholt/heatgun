@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/ui/PauseMenu.gd" type="Script" id=1]
 [ext_resource path="res://fonts/8-BIT WONDER.TTF" type="DynamicFontData" id=2]
 [ext_resource path="res://materials/menu_btn_style.tres" type="StyleBox" id=3]
-[ext_resource path="res://scripts/ui/PauseMenuExitBtn.gd" type="Script" id=4]
+[ext_resource path="res://scripts/ui/Resume.gd" type="Script" id=4]
+[ext_resource path="res://scripts/ui/PauseRestartBtn.gd" type="Script" id=5]
+[ext_resource path="res://scripts/ui/PauseMenuExitBtn.gd" type="Script" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -103,7 +105,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 236.0
 margin_right = 1160.0
-margin_bottom = 350.0
+margin_bottom = 432.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -114,7 +116,7 @@ custom_constants/separation = 50
 alignment = 1
 _sections_unfolded = [ "Custom Constants" ]
 
-[node name="RestartBtn" type="Button" parent="PauseWnd/WndContainer/MenuOptions" index="0"]
+[node name="Resume" type="Button" parent="PauseWnd/WndContainer/MenuOptions" index="0"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -137,13 +139,13 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Restart"
+text = "Continue"
 flat = true
 align = 1
-_sections_unfolded = [ "Custom Colors", "Custom Constants", "Custom Fonts", "Size Flags", "custom_fonts/font" ]
+script = ExtResource( 4 )
+_sections_unfolded = [ "Custom Colors", "Custom Fonts", "Size Flags", "custom_fonts/font" ]
 
-[node name="SettingsBtn" type="Button" parent="PauseWnd/WndContainer/MenuOptions" index="1"]
-visible = false
+[node name="RestartBtn" type="Button" parent="PauseWnd/WndContainer/MenuOptions" index="1"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -167,19 +169,20 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Settings"
+text = "Restart"
 flat = true
 align = 1
-_sections_unfolded = [ "Custom Colors", "Custom Fonts", "Size Flags", "custom_fonts/font" ]
+script = ExtResource( 5 )
+_sections_unfolded = [ "Custom Colors", "Custom Constants", "Custom Fonts", "Size Flags", "custom_fonts/font" ]
 
 [node name="ExitBtn" type="Button" parent="PauseWnd/WndContainer/MenuOptions" index="2"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 82.0
+margin_top = 164.0
 margin_right = 1160.0
-margin_bottom = 114.0
+margin_bottom = 196.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -199,7 +202,9 @@ group = null
 text = "Exit"
 flat = true
 align = 1
-script = ExtResource( 4 )
+script = ExtResource( 6 )
 _sections_unfolded = [ "Custom Colors", "Custom Fonts", "Size Flags", "custom_fonts/font" ]
 
+[connection signal="pressed" from="PauseWnd/WndContainer/MenuOptions/Resume" to="PauseWnd/WndContainer/MenuOptions/Resume" method="_on_Resume_pressed"]
+[connection signal="pressed" from="PauseWnd/WndContainer/MenuOptions/RestartBtn" to="PauseWnd/WndContainer/MenuOptions/RestartBtn" method="_on_RestartBtn_pressed"]
 [connection signal="pressed" from="PauseWnd/WndContainer/MenuOptions/ExitBtn" to="PauseWnd/WndContainer/MenuOptions/ExitBtn" method="_on_ExitBtn_pressed"]

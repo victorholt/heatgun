@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://dungeon_env.tres" type="Environment" id=1]
 [ext_resource path="res://scripts/DungeonMap.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/PauseMenu.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/DeathScene.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/NextLevel.tscn" type="PackedScene" id=11]
 
 [sub_resource type="GIProbeData" id=1]
 
@@ -25,7 +26,7 @@ propagation = 0.5
 interior = true
 compress = false
 
-[node name="Node" type="Node"]
+[node name="Node" type="Node" index="0"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
 environment = ExtResource( 1 )
@@ -138,4 +139,6 @@ margin_bottom = 50.0
 [node name="Pause" parent="." index="9" instance=ExtResource( 9 )]
 
 [node name="Death" parent="." index="10" instance=ExtResource( 10 )]
+
+[node name="NextLevel" parent="." index="11" instance=ExtResource( 11 )]
 
