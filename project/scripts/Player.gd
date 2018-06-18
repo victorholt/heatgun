@@ -5,13 +5,25 @@ onready var camera = get_parent().get_node("Camera")
 onready var weapon = get_node("Weapon")
 onready var weaponMuzzle = get_node("WeaponFireExit")
 onready var projectile = preload("res://scenes/Projectile.tscn")
+onready var body = get_node('Character')
+onready var dungeon_map = get_parent().get_node('DungeonMap')
+onready var death_wnd = get_tree().get_root().get_node('Node/Death')
+# onready var next_lvl_wnd = get_tree().get_root().get_node('Node/NextLevel')
 
 # Best to have some sort of state machine for the entire game...
 var pauseMenu = null
 
+# Current attack target.
+var current_attack_target = null
+var last_map_position = Vector3()
+
 # Movement variables
 var velocity = Vector3()
 var dir = Vector3()
+
+var health = 10
+var is_dead = false
+var crystals = 0
 
 const speed = 15.0
 const accel = 2.0
@@ -19,7 +31,8 @@ const deaccel = 20.0
 const gravity = -10.0
 
 func _ready():	
-	pauseMenu = get_parent().get_node("Pause")
+	set_meta("is_player", true)
+	pauseMenu = get_tree().get_root().get_node("Node/Pause")
 
 	var dungeon_map = get_parent().get_node('DungeonMap')	
 	var map_loc = dungeon_map.get_random_map_location()	
@@ -72,7 +85,28 @@ func walk(delta):
 	velocity.z = tmp_vel.z
 	velocity.y = 0
 	
-	velocity = move_and_slide(velocity, Vector3(0,1,0))
+	move_and_slide(velocity, Vector3(0,1,0))
+	
+	if last_map_position != Vector3(0,0,0):
+		dungeon_map.set_map_tile_color(last_map_position, Color(1,1,1))
+	
+	last_map_position = translation
+	dungeon_map.set_map_tile_color(last_map_position, Color(0.68, 0.161, 0.31))
+	
+func hit(obj, damage):
+	obj.hide()
+	
+	if !is_dead:
+		health -= damage
+	if health <= 0:
+		is_dead = true
+		death_wnd.show_window()
+	return
+	
+func add_health(amount):
+	health += amount
+	if health > 20:
+		health = 15
 
 func fire_weapon(delta):
 	if !Input.is_action_pressed('fire_weapon'):
@@ -81,6 +115,8 @@ func fire_weapon(delta):
 		return
 		
 	var proj = projectile.instance()
+	proj.damage = weapon.get_damage()
+	
 	proj.set_transform(weaponMuzzle.get_global_transform())
 	get_parent().add_child(proj)
 	
@@ -90,6 +126,9 @@ func fire_weapon(delta):
 	proj.add_collision_exception_with(weapon)
 	
 	weapon.emit_signal('fire_weapon')
+	
+func update_current_attack_target(target):
+	current_attack_target = target
 	
 
 	

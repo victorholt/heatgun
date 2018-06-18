@@ -1,12 +1,15 @@
 extends HBoxContainer
 
-onready var player_weapon = null
+var player = null
+var player_weapon = null
 
 func _ready():
-	$Label.text = 'Temp:'
+	$Label.text = 'Gun Temp:'
 	$Value.text = '0'
-	player_weapon = get_tree().get_root().get_node('Node/Player').weapon
-	connect('fire_weapon_update', self, '_on_weapon_fire_update')
+	
+	player = get_tree().get_root().get_node('Node/Player')
+	if player:
+		player_weapon = player.weapon
 	
 func _physics_process(delta):
 	if player_weapon:
@@ -17,5 +20,3 @@ func _physics_process(delta):
 			$Value.set('custom_colors/font_color', Color(1.0, 0.0, 0.0))
 			#$Value.set('custom_colors/font_color', Color(0.68, 0.161, 0.31))
 	
-func _on_weapon_fire_update():
-	pass

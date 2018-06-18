@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://materials/hot_projectile_mat.tres" type="Material" id=2]
-[ext_resource path="res://scripts/Weapon.gd" type="Script" id=3]
+[ext_resource path="res://materials/player_mat.tres" type="Material" id=2]
+[ext_resource path="res://materials/hot_projectile_mat.tres" type="Material" id=3]
+[ext_resource path="res://scripts/Weapon.gd" type="Script" id=4]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -17,7 +18,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=7]
 
 render_priority = 0
 flags_transparent = false
@@ -48,8 +49,8 @@ metallic_texture_channel = 0
 roughness = 0.0
 roughness_texture_channel = 0
 emission_enabled = true
-emission = Color( 0.0588235, 0.333333, 0.407843, 1 )
-emission_energy = 1.83
+emission = Color( 0.278431, 0.505882, 0.658824, 1 )
+emission_energy = 1.0
 emission_operator = 0
 emission_on_uv2 = false
 normal_enabled = false
@@ -72,7 +73,18 @@ uv2_triplanar = false
 uv2_triplanar_sharpness = 1.0
 proximity_fade_enable = false
 distance_fade_enable = false
-_sections_unfolded = [ "Albedo", "Emission", "Parameters", "emission_texture" ]
+_sections_unfolded = [ "Albedo", "Emission" ]
+
+[sub_resource type="CubeMesh" id=8]
+
+material = SubResource( 7 )
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+flip_faces = false
+size = Vector3( 2, 2, 2 )
+subdivide_width = 0
+subdivide_height = 0
+subdivide_depth = 0
+_sections_unfolded = [ "material" ]
 
 [sub_resource type="CubeMesh" id=4]
 
@@ -82,6 +94,74 @@ size = Vector3( 2, 2, 2 )
 subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
+
+[sub_resource type="SpatialMaterial" id=5]
+
+render_priority = 0
+flags_transparent = false
+flags_unshaded = false
+flags_vertex_lighting = false
+flags_no_depth_test = false
+flags_use_point_size = false
+flags_world_triplanar = false
+flags_fixed_size = false
+flags_albedo_tex_force_srgb = false
+flags_do_not_receive_shadows = false
+vertex_color_use_as_albedo = false
+vertex_color_is_srgb = false
+params_diffuse_mode = 0
+params_specular_mode = 0
+params_blend_mode = 0
+params_cull_mode = 0
+params_depth_draw_mode = 0
+params_line_width = 1.0
+params_point_size = 1.0
+params_billboard_mode = 0
+params_grow = false
+params_use_alpha_scissor = false
+albedo_color = Color( 0.980392, 0.537255, 0.454902, 1 )
+metallic = 0.0
+metallic_specular = 0.5
+metallic_texture_channel = 0
+roughness = 0.0
+roughness_texture_channel = 0
+emission_enabled = true
+emission = Color( 1, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+normal_enabled = false
+rim_enabled = false
+clearcoat_enabled = false
+anisotropy_enabled = false
+ao_enabled = false
+depth_enabled = false
+subsurf_scatter_enabled = false
+transmission_enabled = false
+refraction_enabled = false
+detail_enabled = false
+uv1_scale = Vector3( 1, 1, 1 )
+uv1_offset = Vector3( 0, 0, 0 )
+uv1_triplanar = false
+uv1_triplanar_sharpness = 1.0
+uv2_scale = Vector3( 1, 1, 1 )
+uv2_offset = Vector3( 0, 0, 0 )
+uv2_triplanar = false
+uv2_triplanar_sharpness = 1.0
+proximity_fade_enable = false
+distance_fade_enable = false
+_sections_unfolded = [ "Albedo", "Emission" ]
+
+[sub_resource type="CubeMesh" id=6]
+
+material = SubResource( 5 )
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+flip_faces = false
+size = Vector3( 2, 2, 2 )
+subdivide_width = 0
+subdivide_height = 0
+subdivide_depth = 0
+_sections_unfolded = [ "material" ]
 
 [node name="Player" type="KinematicBody"]
 input_ray_pickable = true
@@ -114,8 +194,24 @@ lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
 mesh = SubResource( 2 )
 skeleton = NodePath("..")
-material/0 = SubResource( 3 )
+material/0 = ExtResource( 2 )
 _sections_unfolded = [ "Geometry", "Material", "material/0", "mesh" ]
+
+[node name="hat" type="MeshInstance" parent="Character" index="0"]
+transform = Transform( 0.995279, 0, 0, 0, 0.071853, 0, 0, 0, 0.995279, 0, 1.03352, 0 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 8 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "mesh" ]
 
 [node name="Weapon" type="MeshInstance" parent="." index="2"]
 transform = Transform( 0.147159, 0, 0, 0, 0.165343, 0, 0, 0, 1.50938, 1.24732, 0.222087, -0.976315 )
@@ -130,8 +226,8 @@ lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
 mesh = SubResource( 4 )
 skeleton = NodePath("..")
-material/0 = ExtResource( 2 )
-script = ExtResource( 3 )
+material/0 = ExtResource( 3 )
+script = ExtResource( 4 )
 _sections_unfolded = [ "Material", "mesh" ]
 
 [node name="FireCooldown" type="Timer" parent="Weapon" index="0"]
@@ -146,6 +242,38 @@ wait_time = 1.0
 one_shot = false
 autostart = false
 
+[node name="muzzle" type="MeshInstance" parent="Weapon" index="2"]
+transform = Transform( 1.33086, 0, 0, 0, 1.21131, 0, 0, 0, 0.177697, 0.0708914, 0, -0.836083 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 6 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "mesh" ]
+
+[node name="muzzle2" type="MeshInstance" parent="Weapon" index="3"]
+transform = Transform( 1.33086, 0, 0, 0, 1.21131, 0, 0, 0, 0.0951766, 0.0708914, -1.97995, 0.685044 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 6 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "mesh" ]
+
 [node name="WeaponFireExit" type="Spatial" parent="." index="3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.22997, 0.230216, -2.74225 )
 
@@ -156,7 +284,7 @@ light_color = Color( 0.701961, 0.839216, 0.811765, 1 )
 light_energy = 0.25
 light_indirect_energy = 1.0
 light_negative = false
-light_specular = 0.5
+light_specular = 0.501
 light_bake_mode = 1
 light_cull_mask = -1
 shadow_enabled = false
