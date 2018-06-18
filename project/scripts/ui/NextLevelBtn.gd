@@ -20,5 +20,9 @@ func _on_NextLevelBtn_pressed():
 		num_enemies = 20
 	if num_objects > 15:
 		num_objects = 15
+		
+	# Check if we should hide the notification bar.
+	if new_size >= 6:
+		get_tree().get_root().get_node('Node/Notification').hide()
 	
 	dungeon_map.new_map(new_size, num_enemies, num_objects)	
