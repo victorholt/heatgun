@@ -1,5 +1,7 @@
 # heatgun
-Godot Game Jame June 2018
+Godot Game Jam June 2018
+
+https://itch.io/jam/godotjam062018/rate/270076
 
 - git clone `repo`
 - cd libs/godot-cpp
